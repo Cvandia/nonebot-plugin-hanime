@@ -1,3 +1,7 @@
+# Description: 一些 工具函数, 用于处理图片, 上传文件，添加群聊等操作
+#
+# Copyright (c) 2025 N791
+
 import json
 import secrets
 from io import BytesIO

@@ -1,3 +1,7 @@
+# Description: Hanime1 类，用于处理Hanime1的相关操作
+#
+# Copyright (c) 2025 N791
+
 from pathlib import Path
 
 from nonebot import logger

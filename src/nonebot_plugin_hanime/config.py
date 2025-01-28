@@ -1,3 +1,7 @@
+# Description: nonebot2的 插件配置文件
+#
+# Copyright (c) 2025 N791
+
 from typing import Optional
 
 from nonebot.plugin import get_plugin_config

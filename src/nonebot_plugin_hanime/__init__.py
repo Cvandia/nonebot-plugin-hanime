@@ -1,3 +1,7 @@
+# Description: nonebot2的 插件主文件，用于处理nonebot2的响应逻辑
+#
+# Copyright (c) 2025 N791
+
 from dataclasses import dataclass
 from re import I
 

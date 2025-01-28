@@ -1,3 +1,7 @@
+# Description: hanime1.me 下载器
+#
+# Copyright (c) 2025 N791
+
 import asyncio
 import re
 from pathlib import Path
