@@ -23,11 +23,11 @@ async def upFile(file_path):
 def in_list(group_id: int) -> bool:
     if not Path(config.list_path).exists():
         list_data = []
-        with Path.open(config.list_path, "w") as f:
+        with Path(config.list_path).open("w") as f:
             json.dump(list_data, f)
     else:
         try:
-            with Path.open(config.list_path, "r") as f:
+            with Path(config.list_path).open("r") as f:
                 list_data = json.load(f)
         except (OSError, json.JSONDecodeError) as e:
             logger.warning(f"Error reading file {config.list_path}: {e}")
@@ -39,11 +39,11 @@ def in_list(group_id: int) -> bool:
 def add_list(group_id: int):
     if not Path(config.list_path).exists():
         list_data = []
-        with Path.open(config.list_path, "w") as f:
+        with Path(config.list_path).open("w") as f:
             json.dump(list_data, f)
     else:
         try:
-            with Path.open(config.list_path, "r") as f:
+            with Path(config.list_path).open("r") as f:
                 list_data = json.load(f)
         except (OSError, json.JSONDecodeError) as e:
             logger.warning(f"Error reading file {config.list_path}: {e}")
@@ -52,7 +52,7 @@ def add_list(group_id: int):
     if group_id not in list_data:
         list_data.append(group_id)
         try:
-            with Path.open(config.list_path, "w") as f:
+            with Path(config.list_path).open("w") as f:
                 json.dump(list_data, f)
         except OSError as e:
             logger.warning(f"Error writing to file {config.list_path}: {e}")
@@ -61,11 +61,11 @@ def add_list(group_id: int):
 def remove_list(group_id: int):
     if not Path(config.list_path).exists():
         list_data = []
-        with Path.open(config.list_path, "w") as f:
+        with Path(config.list_path).open("w") as f:
             json.dump(list_data, f)
     else:
         try:
-            with Path.open(config.list_path, "r") as f:
+            with Path(config.list_path).open("r") as f:
                 list_data = json.load(f)
         except (OSError, json.JSONDecodeError) as e:
             logger.warning(f"Error reading file {config.list_path}: {e}")
@@ -74,7 +74,7 @@ def remove_list(group_id: int):
     if group_id in list_data:
         list_data.remove(group_id)
         try:
-            with Path.open(config.list_path, "w") as f:
+            with Path(config.list_path).open("w") as f:
                 json.dump(list_data, f)
         except OSError as e:
             logger.warning(f"Error writing to file {config.list_path}: {e}")
@@ -97,7 +97,7 @@ def change_pixel(image: Image.Image) -> Image.Image:
 def open_image(file_path: str) -> bytes:
     """打开图片并修改尺寸"""
     try:
-        with Path.open(file_path, "rb") as f:
+        with Path(file_path).open("rb") as f:
             image = Image.open(BytesIO(f.read()))  # 打开图片
 
         res_img = change_pixel(image)  # 修改图片以防风控
