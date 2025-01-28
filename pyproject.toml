@@ -1,0 +1,22 @@
+[project]
+name = "nonebot-plugin-hanime"
+version = "0.1.0"
+description = "暂无"
+authors = [
+    {name = "N791", email = "a15345506127@gmail.com"},
+]
+dependencies = ["upfilelive>=1.0.5", "nonebot2>=2.2.0", "pillow>=11.1.0", "nonebot-adapter-onebot>=2.4.6", "bs4>=0.0.2", "aiohttp>=3.11.11", "playwright>=1.49.1"]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
+
+[dependency-groups]
+dev = ["ruff>=0.9.3", "pre-commit>=4.1.0"]
