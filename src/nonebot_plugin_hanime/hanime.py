@@ -1,24 +1,23 @@
 from pathlib import Path
 
-from nonebot import get_plugin_config, logger
+from nonebot import logger
 from nonebot.adapters.onebot.v11 import Message, MessageSegment
 
-from .config import Config
-from .download import download, search
+from .config import config
+from .download import HanimeDownloader
 from .utils import open_image, upFile
-
-config = get_plugin_config(Config)
 
 
 class Hanime1:
     def __init__(self):
         self.base_path = config.base_path
         self.genre_list = config.genre_list
+        self.downloader: HanimeDownloader = HanimeDownloader()
 
     async def download_id(self, id: int, level: int = 2):
         if not Path(self.base_path + f"{id}/{id}.mp4").exists():
             logger.info(f"开始下载: {id}")
-            await download(video_id=id, quality=level)
+            await self.downloader.download(video_id=id, quality=level)
         share_link = None
         if Path(self.base_path + f"{id}/{id}.mp4").exists():
             share_link = await upFile(file_path=self.base_path + f"{id}/{id}.mp4")
@@ -30,7 +29,7 @@ class Hanime1:
         if genre_num > MAX_GENRE_NUM:
             genre_num = 1  # 防止超过预定的数
 
-        res_list = await search(query=query, genre_num=genre_num)
+        res_list = await self.downloader.search(query=query, genre_num=genre_num)
         if len(res_list) == 0:
             return msgs
 

@@ -1,0 +1,21 @@
+name: Ruff Lint
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    paths:
+      - src/nonebot_plugin_hanime/** # src/nonebot_plugin_hanime/下的文件发生变化时触发
+      - pyproject.toml
+
+jobs:
+  ruff:
+    name: Ruff Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Ruff
+        uses: chartboost/ruff-action@v1
+        with:
+          version: 0.7.0

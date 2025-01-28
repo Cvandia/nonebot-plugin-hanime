@@ -3,13 +3,11 @@ import secrets
 from io import BytesIO
 from pathlib import Path
 
-from nonebot import get_plugin_config, logger
+from nonebot import logger
 from PIL import Image
 from UpFileLive import UpFileLive
 
-from .config import Config
-
-config = get_plugin_config(Config)
+from .config import config
 
 
 async def upFile(file_path):

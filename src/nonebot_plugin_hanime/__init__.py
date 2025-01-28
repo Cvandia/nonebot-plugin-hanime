@@ -18,10 +18,13 @@ from .hanime import hanime1
 from .utils import add_list, in_list, remove_list
 
 __plugin_meta__ = PluginMetadata(
-    name="nonebot_plugin_hanime",
-    description="",
-    usage="",
+    name="里番搜索",
+    description="还没想好",  # TODO
+    usage="还没想好",  # TODO
     config=Config,
+    homepage="https://github.com/Cvandia/nonebot-plugin-hanime",
+    supported_adapters={"~onebot.v11"},
+    type="application",
 )
 
 
@@ -34,7 +37,7 @@ state = State()
 
 
 async def is_rule() -> bool:
-    return not state.running
+    return not state.running  # 单例模式
 
 
 hanime_help = on_command("hanime_help", priority=5, block=True)
@@ -54,7 +57,7 @@ hanime_id = on_command("hanime_id", priority=5, block=True, rule=is_rule)
 @hanime_help.handle()
 async def hanime_help_handle(event: GroupMessageEvent):
     if in_list(event.group_id):
-        await hanime_help.finish(config.help_str)
+        await hanime_help.finish(config.hanime_help_str)
     await hanime_help.finish("请先添加本群到白名单")
 
 

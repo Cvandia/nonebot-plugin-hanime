@@ -1,9 +1,11 @@
+from typing import Optional
+
 from nonebot.plugin import get_plugin_config
 from pydantic import BaseModel
 
 
 class Config(BaseModel):
-    help_str: str = (
+    hanime_help_str: str = (
         "hanime帮助:\n"
         "1.hanime_help 显示帮助\n"
         "2.hanime_add 添加群组白名单(管理员)\n"
@@ -28,5 +30,7 @@ class Config(BaseModel):
         "新番預告",
         "H漫畫",
     ]
+    proxy: Optional[str] = None  # 代理地址
+
 
 config = get_plugin_config(Config)
