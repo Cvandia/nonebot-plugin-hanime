@@ -34,7 +34,7 @@ class Config(BaseModel):
         "新番預告",
         "H漫畫",
     ]
-    proxy: Optional[str] = None  # 代理地址
+    proxy: str | None = None  # 代理地址
 
 
 config = get_plugin_config(Config)
